@@ -19,10 +19,12 @@ public class Config {
    }
    
    @Bean(name="hello") //return의 객체 이름이 없는 경우 @Bean옆에 이름을 명시
+   					  //Bean 에 있는 name이기때문에 Person의 name이랑 다른거임
    public Person Person2() {
       // constructor 를 이용한 의존성 주입
        return new Person("이순신", "장군", new PrinterA());
    }
+   // Person hello = new Person("이순신", "장군", new PrinterA()); @Bean(name="hello")같은뜻
    
    @Bean
    public PrinterA printerA() {

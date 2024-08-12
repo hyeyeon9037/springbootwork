@@ -14,9 +14,12 @@ import com.study.springboot.repository.MemberRepository;
 
 @Service
 public class MemberService {
-	
-	@Autowired
-	MemberRepository memberRepository;
+   
+   @Autowired
+   MemberRepository memberRepository;
 
+   public List<Member> selectByNameLike1(String search) {
+      return memberRepository.findByNameLike(search);
+   }
 
 }

@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class FileUploadController {
    
    @RequestMapping("fileUpLoad")
    public @ResponseBody String fileUpLoad(HttpServletRequest request) {
+      JSONObject jObj = new JSONObject();
      String result = "";
       try {
       String filePath = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
@@ -61,13 +63,17 @@ public class FileUploadController {
          }
          System.out.println("Upload fileName : " + fpn);
       }
-      result = "success";
+      //result = "success";
+      jObj.put("success", "ok");
+      jObj.put("fileupload", "파일 업로드 성공");
    } catch (Exception e) {
       
       e.printStackTrace();
-      result = "fail";
+      //result = "fail";
+      jObj.put("success", "no");
+      jObj.put("fileupload", "파일 업로드 실패");
    }
-      return "ok";
+      return result;
    }
    
    

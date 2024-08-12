@@ -21,3 +21,6 @@
 	<a href="list"><button type="button" class="btn btn-outline-success">목록</button></a>
 </body>
 </html>
+
+
+

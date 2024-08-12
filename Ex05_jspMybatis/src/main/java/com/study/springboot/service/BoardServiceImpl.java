@@ -25,11 +25,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.list();
 	}
 
+	
 	@Override
 	public Board detailBoard(String boardno) {
 		return boardDao.detailBoard(boardno);
 	}
-
+	
 	@Override
 	public int deleteBoard(String boardno) {
 		return boardDao.deleteBoard(boardno);
@@ -38,6 +39,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertBoard(Map<String, String> map) {
 		return boardDao.insertBoard(map);
+	}
+
+	@Override
+	public int insertBoard(Board b) {
+		return boardDao.insertBoard(b);
 	}
 
 }

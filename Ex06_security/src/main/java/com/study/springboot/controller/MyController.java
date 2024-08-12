@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MyController {
 	@RequestMapping("/")
 	public @ResponseBody String root() {
-		return "보안홈페이지";
+		return "보안 홈페이지";
 	}
 	
 	@RequestMapping("/guest/gHome")
@@ -25,6 +25,15 @@ public class MyController {
 	public String memberWelcome() {
 		return "member/memWelcome";
 	}
+	
+	@RequestMapping("/loginForm")
+	public String loginForm() {
+		return "security/loginForm";
+	}
+	
+	@RequestMapping("/loginError")
+	public String loginError() {
+		return "security/loginError";
+	}
+	
 }
-
-

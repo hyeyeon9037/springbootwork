@@ -22,4 +22,17 @@ public class MemberService {
       return memberRepository.findByNameLike(search);
    }
 
+   public List<Member> selectMembers2(String search, Sort sort) {
+      return memberRepository.findMembers(search, sort);
+   }
+
+   public Page<Member> selectMembers3(String search, Pageable pageable) {
+      return memberRepository.findMembers(search, pageable);
+   }
+
+   public List<Member> selectMembers4(String search) {
+      // TODO Auto-generated method stub
+      return memberRepository.findMembersNative(search);
+   }
+
 }

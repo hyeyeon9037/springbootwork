@@ -1,6 +1,9 @@
 package com.study.springboot;
 
-import java.io.FileNotFoundException;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +26,7 @@ public class FileUploadController {
    
    @RequestMapping("fileUpLoad")
    public @ResponseBody String fileUpLoad(HttpServletRequest request) {
+     String result = "";
       try {
       String filePath = ResourceUtils.getFile("classpath:static/upload/").toPath().toString();
       System.out.println("파일 저장 위치 : " + filePath);
@@ -32,21 +36,38 @@ public class FileUploadController {
             .filter(part -> "files".equals(part.getName()) && part.getSize() > 0)
             .collect(Collectors.toList()); //읽은 파일을 리스트화 시킴
       
-      // 파일이 여러개 일때
+      //파일이 여러개 일 때
       for(Part filePart : fileParts) {
-    	  //파일이름 얻어오기
-    	  String fileName = Paths.get(filePart.getSubmittedFileName())
-    			  				 .getFileName().toString();
-    	  
-    	  String fpn = filePath + "//" + fileName;
+         // 파일 이름 얻어오기
+         String fileName = Paths.get(filePart.getSubmittedFileName())
+                           .getFileName().toString();
+         
+         String fpn = filePath + "//" + fileName;
+         
+         try(BufferedInputStream fin = new BufferedInputStream(filePart.getInputStream());
+         BufferedOutputStream fout = new BufferedOutputStream(new FileOutputStream(fpn)))
+         {
+            int data;
+            while(true) {
+               data = fin.read();
+               if(data == -1)
+                  break;
+               fout.write(data);
+         }
+         
+         
+         }catch(IOException e) {
+            e.printStackTrace();
+         }
+         System.out.println("Upload fileName : " + fpn);
       }
-      
-      
+      result = "success";
    } catch (Exception e) {
       
       e.printStackTrace();
+      result = "fail";
    }
-      return "";
+      return "ok";
    }
    
    

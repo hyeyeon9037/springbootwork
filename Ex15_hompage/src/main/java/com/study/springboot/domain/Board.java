@@ -36,7 +36,7 @@ public class Board {
 	private String content;
 	@NonNull
 	private String writer;
-	@Column(insertable=false, columnDefinition="NUMBER DEFAULT 0")
+	@Column(insertable=false, nullable=false, columnDefinition="NUMBER DEFAULT 0")
 	private Long count;
 	
 	@CreatedDate

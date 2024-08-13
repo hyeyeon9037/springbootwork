@@ -1,6 +1,7 @@
 package com.study.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,9 @@ public class MemberController {
    
    @Autowired
    MemberService memberService;
+   
+   @Autowired
+   PasswordEncoder passwordEncoder;
    
    @RequestMapping("/")
    public String root() {
@@ -35,6 +39,7 @@ public class MemberController {
    
    @PostMapping("/memberInsert")
    public String memberInsert(Member member) {
+	  passwordEncoder.encode(member.getPassword()); //  passwordEncoder.encode()는 암호화 해주는 것!
       memberService.memberInsert(member);
       return "redirect:/";
    }

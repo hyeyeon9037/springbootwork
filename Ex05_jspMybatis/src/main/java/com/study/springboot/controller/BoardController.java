@@ -68,6 +68,7 @@ public class BoardController {
 	 */
 
 	@RequestMapping("/detail")
+	
 	public String detailView(HttpServletRequest request, Model model) {
 		String bno = request.getParameter("boardno");
 		model.addAttribute("detailBoard", boardService.detailBoard(bno)) ;

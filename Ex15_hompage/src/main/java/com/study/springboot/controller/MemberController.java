@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.study.springboot.domain.Member;
 import com.study.springboot.service.MemberService;
 
 @Controller
-@SessionAttributes({"loginUser"})
+@SessionAttributes({"loginUser"}) // sessionScope로 받겠다는 소리 60번줄 참고 - 
 public class MemberController {
    
    @Autowired
@@ -58,10 +59,32 @@ public class MemberController {
           if(passwordEncoder.matches(member.getPassword(), m.getPassword())) {
         	//참이면 패스워드가 맞음, 거짓이면 맞지않은 것
              model.addAttribute("loginUser", m);
+             // requestScope => sessionScope로 바꾸기
+             // 클래스에 @SessionAttributes({"loginUser"}) 어노테이션 달기
           }
        }else {
           
        }
       return "redirect:/";
    }
+   
+   /*
+   	 @SessionAttributes + model을 통해 로그인 정보를 관리하는 경우
+   	   SessionStatus객체를 통해 사용완료 처리해야 한다.
+   	   - session객체를 폐기하지 않고 재사용
+   */
+   
+   @GetMapping("/logout")
+   public String logout(SessionStatus status) {
+	   if(!status.isComplete()) // @SessionAttributes + model을 통해 로그인 정보를 관리하는 경우
+		   status.setComplete();
+	   return "redirect:/";
+   }
+   
+   
+   
+   
+   
+  
+   
 }

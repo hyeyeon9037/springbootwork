@@ -86,7 +86,7 @@
 			<!-- 3.  GET /menu/type/KR/taste/MILD-->
 			<div class="menu-test">
 				<h3>메뉴 타입과 맛별 조회</h3>
-				<form id="menuTypeTasteForm" name="menuTypeTasteForm">
+				<form id="menuTypeTasteFrm" name="menuTypeTasteFrm">
 					<div class="menuRadio">
 						<input type="radio" name="type" value="KR">한식
 						<input type="radio" name="type" value="CH">중식
@@ -102,6 +102,25 @@
 				</form>
 			</div>
 			<div class="result" id="menuTypeTaste-result"></div>
+			<hr>
+			<script>
+				$(() => {
+					$("#menuTypeTasteFrm").on('submit', e => {
+						e.preventDefault();
+						const type = e.target.type.value;
+						const taste = e.target.taste.value;
+						$.ajax({
+							url: `/menu/type/${type}/taste/${taste}`,
+							method: 'GET',
+							success (result) {
+								console.log(result);
+							},
+							error : console.log
+						})
+						
+					})
+				})
+			</script>
 	</div>
 	
 	<script>

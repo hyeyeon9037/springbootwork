@@ -166,6 +166,7 @@
                   success (result, textStatus, jqXHR) {
                      console.log("result : ",result);
                      console.log("textStatus : ", textStatus);
+                     console.log("location : ", jqXHR.getResponseHeader('Location'));
                      if(jqXHR.status == 201) {
 						 alert("메뉴가 등록 되었습니다.");
 					 }

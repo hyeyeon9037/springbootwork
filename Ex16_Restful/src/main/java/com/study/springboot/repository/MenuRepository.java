@@ -12,9 +12,8 @@ import com.study.springboot.domain.Type;
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 
-   List<Menu> findByType(Type type);
+	List<Menu> findByType(Type type);
 
-   List<Menu> findByAndTaste(Type type, Taste taste);
-
+	List<Menu> findByTypeAndTaste(Type type, Taste taste);
 
 }

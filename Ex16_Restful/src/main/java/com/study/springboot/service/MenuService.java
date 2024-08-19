@@ -12,21 +12,20 @@ import com.study.springboot.repository.MenuRepository;
 
 @Service
 public class MenuService {
-   
-   @Autowired
-   MenuRepository menuRepository;
+	
+	@Autowired
+	MenuRepository menuRepository;
 
-   public List<Menu> menuAllList() {
-      return menuRepository.findAll();
-   }
+	public List<Menu> menuAllList() {
+		return menuRepository.findAll();
+	}
 
-   public List<Menu> findByType(Type type) {
-      return menuRepository.findByType(type);
-   }
+	public List<Menu> findByType(Type type) {
+		return menuRepository.findByType(type);
+	}
 
-public List<Menu> findByAndTaste(Type type, Taste taste) {
-   
-   return menuRepository.findByAndTaste(type, taste);
-}
+	public List<Menu> findByTypeAndTaste(Type type, Taste taste) {
+		return menuRepository.findByTypeAndTaste(type, taste);
+	}
 
 }

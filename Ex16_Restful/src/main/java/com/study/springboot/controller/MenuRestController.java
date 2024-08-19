@@ -16,37 +16,29 @@ import com.study.springboot.service.MenuService;
 @RestController
 @RequestMapping("/menu")
 public class MenuRestController {
-   @Autowired
-   MenuService menuService;
-   
-   @GetMapping
-   public List<Menu> menuAllList(){
-      return menuService.menuAllList();
-      
-   }
-   
-   /*
-     /menu/type/KR
-     /menu/type/CH
-     /menu/type/JP
-    */
-   
-   @GetMapping("/type/{type}")
-   public List<Menu> findByType(@PathVariable(name="type") Type type) {
-      return menuService.findByType(type);
-   }
-   
-   
-   @GetMapping("/type/{type}/taste/{taste}")
-   public List<Menu> findByTypeAndTaste(@PathVariable(name="type") Type type,
-                                  @PathVariable(name="taste") Taste taste)
-    {
-      return menuService.findByAndTaste(type, taste);
-    }
-   
-   
-   
-   
-   
-   
+	
+	@Autowired
+	MenuService menuService;
+	
+	@GetMapping
+	public List<Menu> menuAllList() {
+		return menuService.menuAllList();
+	}
+	
+	/*
+	 /menu/type/KR
+	 /menu/type/CH
+	 /menu/type/JP
+	 */
+	@GetMapping("/type/{type}")
+	public List<Menu> findByType(@PathVariable(name="type") Type type) {
+		return menuService.findByType(type);
+	}
+	
+	@GetMapping("/type/{type}/taste/{taste}")
+	public List<Menu> findByTypeAndTaste(@PathVariable(name="type") Type type,
+										 @PathVariable(name="taste") Taste taste)
+	{
+		return menuService.findByTypeAndTaste(type, taste);
+	}
 }

@@ -7,11 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1> File Upload</h1>
+	<h1>File Upload</h1>
 	<form action="fileUpLoad" method="post" enctype="multipart/form-data">
-		파일 : <input type="file" name="files"><br>
+		파일 : <br>
+		<input type="file" name="files"><br>
+		<input type="file" name="files"><br>
 		<input type="submit" value="FILE UPLOAD">
-		
 	</form>
 </body>
 </html>
+
+
+

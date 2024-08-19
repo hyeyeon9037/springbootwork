@@ -1,5 +1,7 @@
 package com.study.springboot;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -11,7 +13,7 @@ import com.study.springboot.multi.Printer;
 public class Ex01JavaDiApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(Ex01JavaDiApplication.class, args);
+		// SpringApplication.run(Ex01JavaDiApplication.class, args);
 		
 		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		
@@ -27,7 +29,7 @@ public class Ex01JavaDiApplication {
 		
 		if(Person1 == Person2) {
 			System.out.println("같은 객체");
-		}else {
+		} else {
 			System.out.println("다른 객체");
 		}
 	}

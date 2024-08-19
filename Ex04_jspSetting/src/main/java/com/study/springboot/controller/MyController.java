@@ -12,18 +12,18 @@ public class MyController {
 	}
 	
 	@RequestMapping("/test1")
-	// 실행하도록 만들어주는 public
 	public String test1() {
 		return "test1";
-		//  /WEB-INF/views/test1.jsp를 찾아서 웹으로 보여준다는 말이당
-		
-		// 이걸 실행하게 된다면 http://localhost:8080/test1 이 된다.
+		// 호출시   /WEB-INF/views/test1.jsp
 	}
 	
 	@RequestMapping("/test2")
 	public String test2() {
 		return "sub/test2";
-		// 호출시 /WEB-INF/views/sub/test2.jsp
-		// 이걸 실행하게 된다면 http://localhost:8080/test2 이 된다.
+		// 호출시   /WEB-INF/views/sub/test2.jsp
 	}
 }
+
+
+
+

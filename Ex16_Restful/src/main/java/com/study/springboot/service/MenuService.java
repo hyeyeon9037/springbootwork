@@ -37,4 +37,9 @@ public Menu insertMenu(Menu menu) {
 	return menuRepository.save(menu);
 }
 
+public Menu updateMenu(Menu menu) {
+	Menu reMenu = menuRepository.findById(menu.getId()).get(); // 검색해서 가져와야 (따라서 findById를 쓰는 것!) 업데이트가 가능한 것
+	return menuRepository.save(menu); // 사용자가 넣은 것을 가져와야함
+}
+
 }

@@ -168,27 +168,26 @@
                      console.log("textStatus : ", textStatus);
                      console.log("location : ", jqXHR.getResponseHeader('Location'));
                      if(jqXHR.status == 201) {
-						 alert("메뉴가 등록 되었습니다.");
-					 }
+                   alert("메뉴가 등록 되었습니다.");
+                }
                   },
                   error : console.log,
                   complete() {
-					  e.target.reset();
-				  }
+                 e.target.reset();
+              }
                })
             })
          })
       </script>
-      
-      <!-- 5. PUT /menu-->
-  	  <div class="menu-test">
-			<h3>메뉴 수정하기</h3>
-			<p>메뉴번호 검사 후 수정</p>
-			<form name="menuSearchFrm" id="menuSearchFrm">
-				메뉴 번호 : <input	 name="id"><br><br>
-				<button class="btn">검 색</button>
-			</form>
-			 <form name="menuUpdateFrm" id="menuUpdateFrm">
+      <!-- 5.PUT /menu-->
+      <div class="menu-test">
+        <h3>메뉴 수정하기</h3>
+        <p>메뉴번호 검사 후 수정</p>
+        <form name="menuSearchFrm" id="menuSearchFrm">
+           메뉴번호 : <input name="id"><br><br>
+           <button class="btn">검 색</button>
+        </form>
+        <form name="menuUpdateFrm" id="menuUpdateFrm">
             음식점 : <input name="restaurant" required><br><br>
             메뉴명 : <input name="name" required><br><br>
             가 격 : <input name="price" required><br><br>
@@ -206,18 +205,46 @@
             <button class="btn">수 정</button>
             <input type="hidden" name="id">
          </form>
-		</div>    
-      	<hr>
-      	<script>
-			  $(() => {
-				  $("#menuSearchFrm").on('submit', e => {
-					  e.preventDefault();
-					  findById(e.target.id.value);
-				  })
-			  })
-		  </script>
+     </div>
+      
    </div>
+   <hr>
+   <script>
+      $(()=>{
+         $("#menuSearchFrm").on('submit',e=>{
+            e.preventDefault();
+            findById(e.target.id.value);
+         })
+         $("#menuUpdateFrm").on('submit',e=>{
+            e.preventDefault();
+           const frmDate = new FormData(e.target);
+           const menu ={};
+           frmDate.forEach((value,key)=>{
+                menu[key]=value;
+              });
+              console.log(JSON.stringify(menu));
+              $.ajax({
+				  url: '/menu',
+				  data : JSON.stringify(menu),
+				  method : 'PUT',
+				  contentType : 'application/json; charset=utf-8',
+				  success (result) {
+					  console.log(result);
+					  if(result != null) {
+						  alert("수정되었습니다.");
+					  }
+				  },
+				  error : console.log,
+				  complete() {
+					  e.target.reset();
+				  }
+			  })
+         })
+      })
+   </script>
    
+   
+   <!--===============================공통=========================-->
    <script>
       const menuTable = (selector, data) => {
          const container = document.querySelector(selector);
@@ -259,16 +286,16 @@
             url: `/menu/${id}`,
             method : 'GET',
             success (result) {
+            
                console.log(result);
-               const frm = document.menuUpdateFrm;
-               const {id, restaurant, name, price, type, taste} = result;
+               const frm =document.menuUpdateFrm;
+               const{id,restaurant,name,price,type,taste}=result;
                frm.id.value = id;
-               frm.restaurant.value = restaurant;
+               frm.restaurant.value=restaurant;
                frm.name.value = name;
-               frm.price.value = price;
+               frm.price.value=price;
                frm.type.value = type;
-               frm.taste.value = taste;
-               
+               frm.taste.value=taste;
                
             },
             error(jqXHR, testStatus, errorMsg) {
@@ -288,6 +315,7 @@
                console.log(`errorMsg : ${errorMsg}`);
                if(jqXHR.status == 404) {
                   alert("조회한 메뉴는 없습니다.");
+                  
                }
             }
          });

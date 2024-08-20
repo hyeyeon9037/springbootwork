@@ -42,4 +42,9 @@ public Menu updateMenu(Menu menu) {
 	return menuRepository.save(menu); // 사용자가 넣은 것을 가져와야함
 }
 
+public void deleteMenu(Long id) {
+	menuRepository.deleteById(id);
+	
+}
+
 }

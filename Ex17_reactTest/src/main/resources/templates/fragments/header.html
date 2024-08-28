@@ -6,7 +6,7 @@
 		<!-- 로그인 전 -->
 		<div th:if="${loginUser == null}" align="right">
 			<form action="login" method="post">
-				<table> 
+				<table>
 					<tr>
 						<td>아이디</td>
 						<td><input name="id"></td>
@@ -50,8 +50,8 @@
 
 		<table class="nav-area" align="center">
 			<tr>
-				<td>HOME</td>
-				<td>공지사항</td>
+				<td onclick="location.href='/'">HOME</td>
+				<td onclick="location.href='menuForm'">MENU</td>
 				<td onclick="location.href='list'">게시판</td>
 				<td>찾아오는길</td>
 			</tr>

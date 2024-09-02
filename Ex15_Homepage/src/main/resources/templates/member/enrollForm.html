@@ -21,7 +21,7 @@
 			</tr>
 			<tr>
 				<td>* PWD</td>
-				<td><input type="password" name="password" required></td>
+				<td><input type="password" name="password" required ></td>
 			</tr>
 			<tr>
 				<td>* NAME</td>
@@ -63,14 +63,14 @@
 		$(()=>{
 			const $idInput = $("#id");
 			$idInput.keyup(function() {
-				if($idInput.val().length >= 5) {
+				if($idInput.val().length >= 5) { // 아이디 길이가 5 이상
 					$.ajax({
 						url : "idCheck",
 						data : {id: $idInput.val()},
 						success : function(result) {
 							console.log(result);
 							if(result) {
-								$("#checkResult").show();
+								$("#checkResult").show(); // show() 보여줌
 								$("#checkResult").css("color","red").text("중복된 아이디 입니다. 다시 입력해주세요");
 							} else {
 								$("#checkResult").show();
@@ -82,7 +82,7 @@
 						}
 					})
 				} else {
-					$("#checkResult").hide();
+					$("#checkResult").hide(); // hide() 감춤
 				}
 			})
 		})

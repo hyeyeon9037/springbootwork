@@ -45,6 +45,6 @@ public class BoardService {
 	public void delete(Long bno) {
 		boardRepository.deleteById(bno);
 	}
-
+		// return을 안하는 이유 : 삭제하면 리턴할 값이 없기때문에 void로 써준다
 
 }

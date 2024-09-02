@@ -50,7 +50,9 @@
 			</span>
 			<a th:if="${nowPage < boardPage.totalPages-1}" th:href="@{list(nowPage=${nowPage+1})}">...Next</a>
 		</div>
+		
         <div th:if="${loginUser != null}" align="right">
+			<!-- 로그인이 되어있을 때에 글쓰기를 나오게함-->
 			<h4><a href="insertForm">[글쓰기]</a></h4>
 		</div>
     </div>
